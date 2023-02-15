@@ -1,0 +1,92 @@
+; Engine configuration file.
+; It's best edited using the editor UI and not directly,
+; since the parameters that go here are not all obvious.
+;
+; Format:
+;   [section] ; section goes between []
+;   param=value ; assign values to parameters
+
+config_version=4
+
+_global_script_classes=[ {
+"base": "EditorVCSInterface",
+"class": "GitAPI",
+"language": "NativeScript",
+"path": "res://addons/godot-git-plugin/git_api.gdns"
+} ]
+_global_script_class_icons={
+"GitAPI": ""
+}
+
+[application]
+
+config/name="godot-moba"
+run/main_scene="res://scenes/GameScene.tscn"
+boot_splash/show_image=false
+boot_splash/fullsize=false
+config/icon="res://icon.png"
+
+[display]
+
+window/size/width=1280
+window/size/height=720
+
+[editor]
+
+version_control_autoload_on_startup=true
+version_control_plugin_name="GitAPI"
+
+[global]
+
+width=false
+
+[gui]
+
+common/drop_mouse_on_gui_input_disabled=true
+
+[input]
+
+joystick_action={
+"deadzone": 0.5,
+"events": [  ]
+}
+s1_action={
+"deadzone": 0.5,
+"events": [  ]
+}
+s2_action={
+"deadzone": 0.5,
+"events": [  ]
+}
+attack_action={
+"deadzone": 0.5,
+"events": [  ]
+}
+dodge_action={
+"deadzone": 0.5,
+"events": [  ]
+}
+
+[input_devices]
+
+pointing/emulate_touch_from_mouse=true
+
+[mono]
+
+project/assembly_name="godot-moba"
+
+[physics]
+
+common/enable_pause_aware_picking=true
+
+[rendering]
+
+quality/driver/driver_name="GLES2"
+vram_compression/import_s3tc=false
+vram_compression/import_etc=true
+vram_compression/import_etc2=false
+quality/shading/force_vertex_shading.mobile=false
+quality/shading/force_lambert_over_burley.mobile=false
+quality/shading/force_blinn_over_ggx.mobile=false
+quality/depth/hdr.mobile=true
+environment/default_environment="res://default_env.tres"

@@ -1,0 +1,127 @@
+[gd_scene load_steps=20 format=2]
+
+[ext_resource path="res://UI/gui_assets/Joystick_BG.png" type="Texture" id=1]
+[ext_resource path="res://UI/gui_assets/Dodge_Unpressed.png" type="Texture" id=2]
+[ext_resource path="res://UI/gui_assets/S1_Unpressed.png" type="Texture" id=3]
+[ext_resource path="res://UI/gui_assets/S2_Unpressed.png" type="Texture" id=4]
+[ext_resource path="res://UI/gui_assets/Dodge_Pressed.png" type="Texture" id=5]
+[ext_resource path="res://UI/gui_assets/joystick_button.png" type="Texture" id=6]
+[ext_resource path="res://UI/gui_assets/Attack_Unpressed.png" type="Texture" id=7]
+[ext_resource path="res://UI/gui_assets/Attack_Pressed.png" type="Texture" id=8]
+[ext_resource path="res://UI/gui_assets/S1_Pressed.png" type="Texture" id=9]
+[ext_resource path="res://UI/gui_assets/S2_Pressed.png" type="Texture" id=10]
+[ext_resource path="res://UI/gui_assets/SF Atarian System.ttf" type="DynamicFontData" id=11]
+[ext_resource path="res://UI/Controls.gd" type="Script" id=12]
+
+[sub_resource type="CircleShape2D" id=1]
+radius = 200.0
+
+[sub_resource type="CircleShape2D" id=2]
+radius = 350.0
+
+[sub_resource type="CircleShape2D" id=3]
+radius = 350.0
+
+[sub_resource type="CircleShape2D" id=4]
+radius = 350.0
+
+[sub_resource type="CircleShape2D" id=5]
+radius = 340.0
+
+[sub_resource type="DynamicFont" id=7]
+size = 72
+font_data = ExtResource( 11 )
+
+[sub_resource type="Theme" id=6]
+default_font = SubResource( 7 )
+
+[node name="Controls" type="CanvasLayer"]
+script = ExtResource( 12 )
+
+[node name="Control" type="Control" parent="."]
+anchor_top = 1.0
+anchor_bottom = 1.0
+margin_top = -712.0
+margin_right = 1280.0
+margin_bottom = 8.0
+
+[node name="JoystickBG" type="TouchScreenButton" parent="Control"]
+position = Vector2( 0, 449 )
+scale = Vector2( 0.637532, 0.637532 )
+normal = ExtResource( 1 )
+pressed = ExtResource( 1 )
+shape = SubResource( 1 )
+action = "joystick_action"
+
+[node name="inner" type="Sprite" parent="Control/JoystickBG"]
+position = Vector2( 194.5, 194.5 )
+texture = ExtResource( 6 )
+
+[node name="Control2" type="Control" parent="."]
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -40.0
+margin_top = -40.0
+
+[node name="Attack" type="TouchScreenButton" parent="Control2"]
+position = Vector2( -248, -224 )
+scale = Vector2( 0.365019, 0.334601 )
+normal = ExtResource( 7 )
+pressed = ExtResource( 8 )
+shape = SubResource( 2 )
+
+[node name="Control3" type="Control" parent="."]
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -40.0
+margin_top = -40.0
+
+[node name="SpecialAttack1" type="TouchScreenButton" parent="Control3"]
+position = Vector2( -412, -391 )
+scale = Vector2( 0.283904, 0.283904 )
+normal = ExtResource( 3 )
+pressed = ExtResource( 9 )
+shape = SubResource( 3 )
+
+[node name="Control4" type="Control" parent="."]
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -40.0
+margin_top = -40.0
+
+[node name="SpecialAttack2" type="TouchScreenButton" parent="Control4"]
+position = Vector2( -215, -442 )
+rotation = -0.0131816
+scale = Vector2( 0.273764, 0.273764 )
+normal = ExtResource( 4 )
+pressed = ExtResource( 10 )
+shape = SubResource( 4 )
+
+[node name="Control5" type="Control" parent="."]
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -40.0
+margin_top = -40.0
+
+[node name="Dodge" type="TouchScreenButton" parent="Control5"]
+position = Vector2( -439, -184 )
+scale = Vector2( 0.233207, 0.233207 )
+normal = ExtResource( 2 )
+pressed = ExtResource( 5 )
+shape = SubResource( 5 )
+
+[node name="FPSLabel" type="Label" parent="."]
+margin_left = 22.0
+margin_top = 33.0
+margin_right = 195.0
+margin_bottom = 76.0
+theme = SubResource( 6 )
+text = "60 FPS"

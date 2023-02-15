@@ -1,0 +1,29 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://characters/character1/Character1Controller.tscn" type="PackedScene" id=1]
+[ext_resource path="res://UI/Controls.tscn" type="PackedScene" id=2]
+[ext_resource path="res://stages/stage1/stage1.tscn" type="PackedScene" id=3]
+
+[node name="GameScene" type="Spatial"]
+
+[node name="stage1" parent="." instance=ExtResource( 3 )]
+
+[node name="Character1" parent="." instance=ExtResource( 1 )]
+transform = Transform( 2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0 )
+
+[node name="Controls" parent="." instance=ExtResource( 2 )]
+
+[node name="Attack" parent="Controls/Control2" index="0"]
+action = "attack_action"
+
+[node name="SpecialAttack1" parent="Controls/Control3" index="0"]
+action = "s1_action"
+
+[node name="SpecialAttack2" parent="Controls/Control4" index="0"]
+action = "s2_action"
+
+[node name="Dodge" parent="Controls/Control5" index="0"]
+action = "dodge_action"
+
+[editable path="Character1"]
+[editable path="Controls"]
