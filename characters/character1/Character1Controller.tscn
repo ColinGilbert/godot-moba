@@ -14,7 +14,6 @@ background_mode = 2
 background_sky = SubResource( 4 )
 background_color = Color( 0, 0, 0, 0 )
 ambient_light_color = Color( 1, 1, 1, 1 )
-ambient_light_energy = 0.0
 
 [node name="Character1" type="KinematicBody"]
 script = ExtResource( 2 )

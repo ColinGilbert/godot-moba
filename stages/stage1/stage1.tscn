@@ -2889,10 +2889,11 @@ material_override = SubResource( 13 )
 use_in_baked_light = true
 mesh = SubResource( 166 )
 
-[node name="river" type="MeshInstance" parent="."]
+[node name="river" type="MeshInstance" parent="assets"]
 transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -26, 0.01, 0 )
 use_in_baked_light = true
 mesh = SubResource( 14 )
+skeleton = NodePath("../..")
 material/0 = SubResource( 24 )
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
@@ -2900,7 +2901,6 @@ environment = SubResource( 36 )
 
 [node name="DirectionalLight" type="DirectionalLight" parent="."]
 transform = Transform( 0.5422, -0.176582, 0.821485, -0.814632, -0.350042, 0.462433, 0.205897, -0.91994, -0.333643, 12.5085, -45.4322, 215.323 )
-visible = false
 light_bake_mode = 2
 shadow_enabled = true
 directional_shadow_mode = 0
