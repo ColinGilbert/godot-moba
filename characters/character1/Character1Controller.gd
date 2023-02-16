@@ -44,6 +44,7 @@ func process_input(input):
 		if input["D"] == Vector3.ZERO:
 			travel("idle")
 		else:
-			character.rotation.y = lerp_angle(input["R"], atan2(input["D"].x, input["D"].z), MIN_TIME_BETWEEN_TICKS*10)
-			velocity = 5.0 * direction
-	move_and_collide(velocity*MIN_TIME_BETWEEN_TICKS)
+			character.rotation.y = lerp_angle(input["R"], atan2(input["D"].x, input["D"].z), MIN_TIME_BETWEEN_TICKS * 10)
+			velocity = 5.0 * input["D"].normalized()
+	print("Translation vector = " + str(global_translation) + ", rotation = " + str(rotation) + " velocity = " + str(velocity * MIN_TIME_BETWEEN_TICKS) + ", tick = " + str(current_tick))
+	move_and_collide(velocity * MIN_TIME_BETWEEN_TICKS)

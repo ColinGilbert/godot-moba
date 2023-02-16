@@ -4,8 +4,8 @@
 [ext_resource path="res://characters/character1/Character1Controller.gd" type="Script" id=2]
 
 [sub_resource type="CapsuleShape" id=1]
-radius = 0.769285
-height = 0.691402
+radius = 0.889584
+height = 3.1475
 
 [sub_resource type="ProceduralSky" id=4]
 
@@ -16,13 +16,14 @@ background_color = Color( 0, 0, 0, 0 )
 ambient_light_color = Color( 1, 1, 1, 1 )
 ambient_light_energy = 0.0
 
-[node name="KinematicBody" type="KinematicBody"]
+[node name="Character1" type="KinematicBody"]
 script = ExtResource( 2 )
 
 [node name="VampireVonDouche" parent="." instance=ExtResource( 1 )]
+transform = Transform( 2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0 )
 
 [node name="CollisionShape" type="CollisionShape" parent="."]
-transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 1.08379, 0 )
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 1.93729, 0 )
 shape = SubResource( 1 )
 
 [node name="CamGuideY" type="Spatial" parent="."]

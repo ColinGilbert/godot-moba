@@ -23,6 +23,7 @@ var rotation_velocity_y = 0
 func _ready():
 	joystick_center = joystick_handle.global_position
 
+
 func _input(event):
 	if event is InputEventScreenTouch:
 		if event.pressed:
@@ -43,7 +44,7 @@ func _input(event):
 			if Input.is_action_just_released("joystick_action"):
 				joystick_index = -1
 				joystick_handle.global_position = joystick_center
-				#joystick_active = false
+				joystick_active = false
 			elif Input.is_action_just_released("attack_action"):
 				attack_index = -1
 			elif Input.is_action_just_released("s1_action"):
