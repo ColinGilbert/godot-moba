@@ -2941,8 +2941,8 @@ transform = Transform( -1.22907e-07, 0, 5.62357, 0, 2, 0, -2, 0, -1.74846e-07, -
 shape = SubResource( 30 )
 
 [node name="BakedLightmap" type="BakedLightmap" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 14.1257, 0 )
-extents = Vector3( 96.738, 15.8274, 108.341 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -2.93564, 11.8346, -0.721645 )
+extents = Vector3( 103.348, 13.8404, 114.276 )
 quality = 0
 environment_mode = 1
 environment_min_light = Color( 0.321569, 0.321569, 0.321569, 1 )

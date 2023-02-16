@@ -6,10 +6,10 @@
 
 [node name="GameScene" type="Spatial"]
 
-[node name="stage1" parent="." instance=ExtResource( 3 )]
-
 [node name="Character1" parent="." instance=ExtResource( 1 )]
-transform = Transform( 2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0 )
+transform = Transform( 2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 19.839 )
+
+[node name="stage1" parent="." instance=ExtResource( 3 )]
 
 [node name="Controls" parent="." instance=ExtResource( 2 )]
 
@@ -24,6 +24,8 @@ action = "s2_action"
 
 [node name="Dodge" parent="Controls/Control5" index="0"]
 action = "dodge_action"
+
+[connection signal="direction_vector" from="Controls" to="Character1" method="_on_Controls_direction_vector"]
 
 [editable path="Character1"]
 [editable path="Controls"]

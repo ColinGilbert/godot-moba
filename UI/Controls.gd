@@ -4,9 +4,12 @@ onready var camguide_y = get_parent().get_node("Character1/CamGuideY")
 onready var camguide_x = get_parent().get_node("Character1/CamGuideY/CamGuideX")
 onready var joystick_handle = $Control/JoystickBG/inner
 
-var joystick_center: Vector2
-var joystick_vector: Vector2
-var joystick_vector_normalized: Vector2
+signal direction_vector
+var direction = Vector3.ZERO
+var joystick_active = false
+var joystick_center: Vector2 = Vector2.ZERO
+var joystick_vector: Vector2 = Vector2.ZERO
+var joystick_vector_normalized: Vector2 = Vector2.ZERO
 var joystick_index = -1
 var attack_index = -1
 var s1_index = -1
@@ -25,6 +28,7 @@ func _input(event):
 		if event.pressed:
 			if Input.is_action_just_pressed("joystick_action"):
 				joystick_index = event.index
+				joystick_active = true
 			elif Input.is_action_just_pressed("attack_action"):
 				attack_index = event.index
 			elif Input.is_action_just_pressed("s1_action"):
@@ -39,6 +43,7 @@ func _input(event):
 			if Input.is_action_just_released("joystick_action"):
 				joystick_index = -1
 				joystick_handle.global_position = joystick_center
+				#joystick_active = false
 			elif Input.is_action_just_released("attack_action"):
 				attack_index = -1
 			elif Input.is_action_just_released("s1_action"):
@@ -59,6 +64,11 @@ func _input(event):
 
 func _process(delta):
 	$FPSLabel.text = str(Engine.get_frames_per_second()) + " FPS"
+	if joystick_active:
+		direction = -(camguide_y.transform.basis.z*joystick_vector_normalized.y + camguide_y.transform.basis.x*joystick_vector_normalized.x)
+		emit_signal("direction_vector", direction)
+	else:
+		emit_signal("direction_vector", Vector3.ZERO)
 	rotation_velocity_x = lerp(rotation_velocity_x, camera_input.x * 0.4, delta*10)
 	rotation_velocity_y = lerp(rotation_velocity_y, camera_input.y * 0.15, delta*10)
 	camguide_x.rotate_x(deg2rad(-rotation_velocity_y))
