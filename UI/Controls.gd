@@ -10,6 +10,7 @@ signal s1_attack
 signal s2_attack
 signal dodge
 
+var current_state
 var direction = Vector3.ZERO
 var joystick_active = false
 var joystick_center: Vector2 = Vector2.ZERO
@@ -75,7 +76,7 @@ func _input(event):
 func _process(delta):
 	$FPSLabel.text = str(Engine.get_frames_per_second()) + " FPS"
 	if joystick_active:
-		if ((camera_index != 1 and sign(camera_input.x) == sign(joystick_vector.x)) or camera_index == -1):
+		if (((camera_index != 1 and sign(camera_input.x) == sign(joystick_vector.x)) or camera_index == -1)) and current_state == "run":
 			auto_rotation = lerp(auto_rotation, -joystick_vector_normalized.x, delta * 10)
 			camguide_y.rotate_y(deg2rad(auto_rotation))
 		direction = -(camguide_y.transform.basis.z*joystick_vector_normalized.y + camguide_y.transform.basis.x*joystick_vector_normalized.x)
@@ -88,3 +89,7 @@ func _process(delta):
 	camguide_y.rotate_y(deg2rad(-rotation_velocity_x))
 	camguide_x.rotation.x = clamp(camguide_x.rotation.x, -0.5, 0.5)
 	camera_input = Vector2.ZERO
+
+
+func _on_Character1_state(state):
+	current_state = state

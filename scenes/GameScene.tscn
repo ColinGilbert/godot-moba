@@ -24,6 +24,7 @@ action = "s2_action"
 [node name="Dodge" parent="Controls/Control5" index="0"]
 action = "dodge_action"
 
+[connection signal="state" from="Character1" to="Controls" method="_on_Character1_state"]
 [connection signal="direction_vector" from="Controls" to="Character1" method="_on_Controls_direction_vector"]
 [connection signal="dodge" from="Controls" to="Character1" method="_on_Controls_dodge"]
 [connection signal="normal_attack" from="Controls" to="Character1" method="_on_Controls_normal_attack"]

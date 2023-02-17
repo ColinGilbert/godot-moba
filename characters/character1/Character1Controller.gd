@@ -4,6 +4,8 @@ onready var character = $VampireVonDouche
 onready var anim_tree = $VampireVonDouche/AnimationTree
 onready var state_machine = anim_tree["parameters/playback"]
 
+signal state
+
 var normal_attack_counter = 0
 var button_pressed = "none"
 var velocity = Vector3.ZERO
@@ -27,11 +29,15 @@ func animation_time():
 
 func calc_velocity(dir, speed):
 	var vel = Vector3.ZERO
-	var collision = move_and_collide(Vector3(dir.x, -0.1, dir.z) * speed * MIN_TIME_BETWEEN_TICKS, true, true, true)
+	var dir2d = Vector2(dir.x, dir.z).normalized()
+	var collision = move_and_collide(Vector3(dir2d.x * speed, -1, dir2d.y * speed) * MIN_TIME_BETWEEN_TICKS, true, true, true)
 	if collision and collision.normal.y > 0.5: # We are on a plane
-		vel = Vector3(dir.x, 0, dir.z) * speed * MIN_TIME_BETWEEN_TICKS
+		if collision.normal.y >= 1:
+			vel = Vector3(dir2d.x * speed, 0, dir2d.y * speed)
+		elif collision.normal.y > 0.9:
+			vel = Vector3(dir2d.x * speed, (1 - collision.normal.y) * 2, dir2d.y * speed)
 	else:
-		vel = Vector3(dir.x, GRAVITY, dir.z) * speed * MIN_TIME_BETWEEN_TICKS
+		vel = Vector3(dir2d.x * speed, GRAVITY, dir2d.y *speed)
 	return vel
 	
 func _process(delta):
@@ -40,6 +46,7 @@ func _process(delta):
 		timer -= MIN_TIME_BETWEEN_TICKS
 		handle_tick()
 		current_tick += 1
+	emit_signal("state", state())
 
 func handle_tick():
 	var client_input = {}
@@ -94,7 +101,7 @@ func process_input(input):
 	elif input["S"] == "idle":
 		normal_attack_counter = 0
 		if input["D"] == Vector3.ZERO:
-			pass
+			velocity = calc_velocity(input["D"], 0)
 		else:
 			travel("run")
 	elif input["S"] == "run":
@@ -103,7 +110,7 @@ func process_input(input):
 			travel("idle")
 		else:
 			character.rotation.y = lerp_angle(input["R"], atan2(input["D"].x, input["D"].z), MIN_TIME_BETWEEN_TICKS * 10)
-			velocity = calc_velocity(input["D"], 12)
+			velocity = calc_velocity(input["D"], MIN_TIME_BETWEEN_TICKS * 20)
 	move_and_collide(velocity)
 
 
