@@ -13,7 +13,7 @@ var direction = Vector3.ZERO
 var timer = 0
 var current_tick = 0
 const MIN_TIME_BETWEEN_TICKS = 1 / 60.0
-const GRAVITY = -0.1
+const GRAVITY = -0.4
 
 func _on_Controls_direction_vector(dir):
 	direction = dir
@@ -37,8 +37,8 @@ func calc_velocity(dir, speed):
 		elif collision.normal.y > 0.9:
 			vel = Vector3(dir2d.x * speed, (1 - collision.normal.y) * 2, dir2d.y * speed)
 	else:
-		vel = Vector3(dir2d.x * speed, GRAVITY, dir2d.y *speed)
-	return vel
+		vel = Vector3(dir2d.x * speed, GRAVITY, dir2d.y * speed)
+	return vel * MIN_TIME_BETWEEN_TICKS * 10
 	
 func _process(delta):
 	timer += delta
@@ -71,7 +71,7 @@ func process_input(input):
 	elif input["S"] == "special_attack_2":
 		normal_attack_counter = 0
 		if input["AT"] < 1.8:
-			velocity = calc_velocity(character.transform.basis.z, 6)
+			velocity = calc_velocity(character.transform.basis.z, 3)
 		else:
 			pass
 	elif input["B"] != "none":
@@ -93,9 +93,9 @@ func process_input(input):
 			travel("special_attack_2")
 	elif input["S"] == "normal_attack_1":
 		if input["AT"] > 0.1:
-			velocity = calc_velocity(character.transform.basis.z, 4)
+			velocity = calc_velocity(character.transform.basis.z, 1)
 	elif input["S"] == "normal_attack_2":
-		velocity = calc_velocity(character.transform.basis.z, 5)
+		velocity = calc_velocity(character.transform.basis.z, 1)
 	elif input["S"] == "normal_attack_3":
 		velocity = calc_velocity(character.transform.basis.z, 1)
 	elif input["S"] == "idle":
@@ -110,7 +110,7 @@ func process_input(input):
 			travel("idle")
 		else:
 			character.rotation.y = lerp_angle(input["R"], atan2(input["D"].x, input["D"].z), MIN_TIME_BETWEEN_TICKS * 10)
-			velocity = calc_velocity(input["D"], MIN_TIME_BETWEEN_TICKS * 20)
+			velocity = calc_velocity(input["D"], 3)
 	move_and_collide(velocity)
 
 
