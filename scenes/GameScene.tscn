@@ -25,5 +25,9 @@ action = "s2_action"
 action = "dodge_action"
 
 [connection signal="direction_vector" from="Controls" to="Character1" method="_on_Controls_direction_vector"]
+[connection signal="dodge" from="Controls" to="Character1" method="_on_Controls_dodge"]
+[connection signal="normal_attack" from="Controls" to="Character1" method="_on_Controls_normal_attack"]
+[connection signal="s1_attack" from="Controls" to="Character1" method="_on_Controls_s1_attack"]
+[connection signal="s2_attack" from="Controls" to="Character1" method="_on_Controls_s2_attack"]
 
 [editable path="Controls"]

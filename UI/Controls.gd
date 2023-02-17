@@ -5,6 +5,11 @@ onready var camguide_x = get_parent().get_node("Character1/CamGuideY/CamGuideX")
 onready var joystick_handle = $Control/JoystickBG/inner
 
 signal direction_vector
+signal normal_attack
+signal s1_attack
+signal s2_attack
+signal dodge
+
 var direction = Vector3.ZERO
 var joystick_active = false
 var joystick_center: Vector2 = Vector2.ZERO
@@ -32,12 +37,16 @@ func _input(event):
 				joystick_active = true
 			elif Input.is_action_just_pressed("attack_action"):
 				attack_index = event.index
+				emit_signal("normal_attack")
 			elif Input.is_action_just_pressed("s1_action"):
 				s1_index = event.index
+				emit_signal("s1_attack")
 			elif Input.is_action_just_pressed("s2_action"):
 				s2_index = event.index
+				emit_signal("s2_attack")
 			elif Input.is_action_just_pressed("dodge_action"):
 				dodge_index = event.index
+				emit_signal("dodge")
 			else:
 				camera_index = event.index
 		else:
