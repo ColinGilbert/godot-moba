@@ -2900,7 +2900,7 @@ material/0 = SubResource( 24 )
 environment = SubResource( 36 )
 
 [node name="DirectionalLight" type="DirectionalLight" parent="."]
-transform = Transform( 0.5422, -0.176582, 0.821485, -0.814632, -0.350042, 0.462433, 0.205897, -0.91994, -0.333643, 12.5085, -45.4322, 215.323 )
+transform = Transform( 0.5422, -0.176582, 0.821485, -0.814632, -0.350042, 0.462434, 0.205897, -0.91994, -0.333642, 12.0869, -45.4322, 222.49 )
 light_bake_mode = 2
 shadow_enabled = true
 directional_shadow_mode = 0

@@ -9,7 +9,7 @@ var direction = Vector3.ZERO
 var timer = 0
 var current_tick = 0
 const MIN_TIME_BETWEEN_TICKS = 1 / 60.0
-
+const GRAVITY = -0.1
 func _on_Controls_direction_vector(dir):
 	direction = dir
 
@@ -33,6 +33,15 @@ func handle_tick():
 	client_input["S"] = state()
 	process_input(client_input)
 
+func calc_velocity(dir, speed):
+	var vel = Vector3.ZERO
+	var collision = move_and_collide(Vector3(dir.x, -0.1, dir.z) * speed * MIN_TIME_BETWEEN_TICKS, true, true, true)
+	if collision and collision.normal.y > 0.5: # We are on a plane
+		vel = Vector3(dir.x, 0, dir.z) * speed * MIN_TIME_BETWEEN_TICKS
+	else:
+		vel = Vector3(dir.x, GRAVITY, dir.z) * speed * MIN_TIME_BETWEEN_TICKS
+	return vel
+
 func process_input(input):
 	velocity = Vector3.ZERO
 	if input["S"] == "idle":
@@ -45,5 +54,5 @@ func process_input(input):
 			travel("idle")
 		else:
 			character.rotation.y = lerp_angle(input["R"], atan2(input["D"].x, input["D"].z), MIN_TIME_BETWEEN_TICKS * 10)
-			velocity = 10.0 * input["D"].normalized() * MIN_TIME_BETWEEN_TICKS
+			velocity = calc_velocity(input["D"], 12)
 	move_and_collide(velocity)

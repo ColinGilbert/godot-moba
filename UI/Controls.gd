@@ -19,10 +19,10 @@ var camera_index = -1
 var camera_input = Vector2.ZERO
 var rotation_velocity_x = 0
 var rotation_velocity_y = 0
+var auto_rotation = 0
 
 func _ready():
 	joystick_center = joystick_handle.global_position
-
 
 func _input(event):
 	if event is InputEventScreenTouch:
@@ -66,13 +66,16 @@ func _input(event):
 func _process(delta):
 	$FPSLabel.text = str(Engine.get_frames_per_second()) + " FPS"
 	if joystick_active:
+		if ((camera_index != 1 and sign(camera_input.x) == sign(joystick_vector.x)) or camera_index == -1):
+			auto_rotation = lerp(auto_rotation, -joystick_vector_normalized.x, delta * 10)
+			camguide_y.rotate_y(deg2rad(auto_rotation))
 		direction = -(camguide_y.transform.basis.z*joystick_vector_normalized.y + camguide_y.transform.basis.x*joystick_vector_normalized.x)
 		emit_signal("direction_vector", direction)
 	else:
 		emit_signal("direction_vector", Vector3.ZERO)
 	rotation_velocity_x = lerp(rotation_velocity_x, camera_input.x * 0.4, delta*10)
 	rotation_velocity_y = lerp(rotation_velocity_y, camera_input.y * 0.15, delta*10)
-	camguide_x.rotate_x(deg2rad(-rotation_velocity_y))
+	camguide_x.rotate_x(deg2rad(rotation_velocity_y))
 	camguide_y.rotate_y(deg2rad(-rotation_velocity_x))
 	camguide_x.rotation.x = clamp(camguide_x.rotation.x, -0.5, 0.5)
 	camera_input = Vector2.ZERO
