@@ -21,10 +21,14 @@ _global_script_class_icons={
 [application]
 
 config/name="godot-moba"
-run/main_scene="res://scenes/GameScene.tscn"
+run/main_scene="res://scenes/SceneHandler.tscn"
 boot_splash/show_image=false
 boot_splash/fullsize=false
 config/icon="res://icon.png"
+
+[autoload]
+
+Server="*res://autoload/Server.gd"
 
 [display]
 
@@ -82,7 +86,10 @@ common/enable_pause_aware_picking=true
 [rendering]
 
 quality/driver/driver_name="GLES2"
+threads/thread_model=2
+threads/thread_safe_bvh=true
 vram_compression/import_etc=true
+vram_compression/import_etc2=false
 quality/shading/force_vertex_shading.mobile=false
 quality/shading/force_lambert_over_burley.mobile=false
 quality/shading/force_blinn_over_ggx.mobile=false

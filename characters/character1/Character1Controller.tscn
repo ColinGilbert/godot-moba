@@ -1,7 +1,9 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://characters/character1/vampire-von-douche.tscn" type="PackedScene" id=1]
 [ext_resource path="res://characters/character1/Character1Controller.gd" type="Script" id=2]
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id=5]
 
 [sub_resource type="CapsuleShape" id=1]
 radius = 2.0
@@ -21,6 +23,9 @@ script = ExtResource( 2 )
 [node name="VampireVonDouche" parent="." instance=ExtResource( 1 )]
 transform = Transform( 2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0 )
 
+[node name="AnimationTree" parent="VampireVonDouche" index="2"]
+parameters/playback = SubResource( 5 )
+
 [node name="CollisionShape" type="CollisionShape" parent="."]
 transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 4.67358, 0 )
 shape = SubResource( 1 )
@@ -36,3 +41,5 @@ environment = SubResource( 3 )
 current = true
 fov = 120.0
 far = 1000.0
+
+[editable path="VampireVonDouche"]

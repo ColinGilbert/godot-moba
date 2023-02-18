@@ -1,0 +1,44 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://UI/gui_assets/SF Atarian System.ttf" type="DynamicFontData" id=1]
+[ext_resource path="res://scenes/MainMenu.gd" type="Script" id=2]
+
+[sub_resource type="DynamicFont" id=1]
+size = 40
+font_data = ExtResource( 1 )
+
+[sub_resource type="DynamicFont" id=2]
+size = 40
+font_data = ExtResource( 1 )
+
+[node name="MainMenu" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 2 )
+
+[node name="CreateRoom" type="Button" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -95.0
+margin_top = -108.0
+margin_right = 118.0
+margin_bottom = -44.0
+custom_fonts/font = SubResource( 1 )
+text = "Create a room"
+
+[node name="JoinRoom" type="Button" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -70.0
+margin_top = -11.0
+margin_right = 100.0
+margin_bottom = 50.0
+custom_fonts/font = SubResource( 2 )
+text = "Join a room"
+
+[connection signal="pressed" from="CreateRoom" to="." method="_on_CreateRoom_pressed"]
+[connection signal="pressed" from="JoinRoom" to="." method="_on_JoinRoom_pressed"]
