@@ -54,6 +54,7 @@ margin_top = -155.0
 margin_right = 118.0
 margin_bottom = -115.0
 custom_fonts/font = SubResource( 2 )
+disabled = true
 text = "Start Match"
 
 [node name="Exit" type="Button" parent="."]
@@ -71,6 +72,7 @@ text = "Exit"
 [node name="Timer" type="Timer" parent="."]
 autostart = true
 
+[connection signal="item_selected" from="ItemList" to="." method="_on_ItemList_item_selected"]
 [connection signal="pressed" from="Start" to="." method="_on_Start_pressed"]
 [connection signal="pressed" from="Exit" to="." method="_on_Exit_pressed"]
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]

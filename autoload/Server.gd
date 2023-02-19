@@ -28,21 +28,25 @@ func add_client():
 	rpc_id(1, "add_client", r_id)
 
 remote func enter_room(room_id):
-	if get_tree().get_rpc_sender_id() != 1: # Important: Checks if its the server and returns otherwise.
+	if get_tree().get_rpc_sender_id() != 1: # Important: Checks if it's the server.
 		return
-	r_id = room_id
+	r_id = int(room_id)
 	var res = scene_handler.get_node_or_null("MainMenu")
 	if res != null:
 		print("Entering room " + str(r_id))
 		res.enter_room()
 	else:
-		print("MainMenu doesn't exist in SceneHandler!")
+		res = scene_handler.get_node_or_null("Lobby")
+		if res != null:
+			res.enter_room()
+		else:
+			print("Could not enter room")
 		
 func update_clients():
 	rpc_id(1, "update_clients", r_id)
 
 remote func updated_clients(client_list):
-	if get_tree().get_rpc_sender_id() != 1: # Important: Checks if its the server and returns otherwise.
+	if get_tree().get_rpc_sender_id() != 1: # Important: Checks if it's the server.
 		return
 	var results = scene_handler.get_node_or_null("RoomScene")
 	if results != null:
@@ -63,3 +67,9 @@ remote func updated_rooms(rooms_list):
 		res.updated_rooms(rooms_list)
 	else:
 		print("Couldn't find node Lobby")
+		
+func request_enter(room_id):
+	rpc_id(1, "request_enter", room_id)
+
+remote func switch_team():
+	rpc_id(1, "switch_team", r_id)

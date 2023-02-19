@@ -1,7 +1,11 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://UI/gui_assets/SF Atarian System.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://scenes/Lobby.gd" type="Script" id=2]
+
+[sub_resource type="DynamicFont" id=2]
+size = 30
+font_data = ExtResource( 1 )
 
 [sub_resource type="DynamicFont" id=1]
 size = 40
@@ -17,11 +21,15 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -336.5
+margin_left = -500.0
 margin_top = -203.0
-margin_right = 336.5
+margin_right = 500.0
 margin_bottom = 203.0
+custom_fonts/font = SubResource( 2 )
 max_columns = 2
+same_column_width = true
+fixed_column_width = 450
+icon_mode = 0
 
 [node name="JoinRoom" type="Button" parent="."]
 anchor_left = 0.5
@@ -51,6 +59,7 @@ text = "Exit"
 wait_time = 3.0
 autostart = true
 
+[connection signal="item_selected" from="ItemList" to="." method="_on_ItemList_item_selected"]
 [connection signal="pressed" from="JoinRoom" to="." method="_on_JoinRoom_pressed"]
 [connection signal="pressed" from="Exit" to="." method="_on_Exit_pressed"]
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
