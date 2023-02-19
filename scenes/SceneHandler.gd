@@ -18,7 +18,7 @@ func handle_scene_change(scene_name):
 			loader = ResourceLoader.load_interactive("res://scenes/LoginScene.tscn")
 		"room_scene":
 			loader = ResourceLoader.load_interactive("res://scenes/RoomScene.tscn")
-		"lobby":
+		"lobby_scene":
 			loader = ResourceLoader.load_interactive("res://scenes/Lobby.tscn")
 		"main_menu":
 			loader = ResourceLoader.load_interactive("res://scenes/MainMenu.tscn")
