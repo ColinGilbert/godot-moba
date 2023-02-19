@@ -21,6 +21,7 @@ margin_left = -336.5
 margin_top = -203.0
 margin_right = 336.5
 margin_bottom = 203.0
+max_columns = 2
 
 [node name="JoinRoom" type="Button" parent="."]
 anchor_left = 0.5
@@ -46,5 +47,10 @@ margin_bottom = -26.0
 custom_fonts/font = SubResource( 1 )
 text = "Exit"
 
+[node name="Timer" type="Timer" parent="."]
+wait_time = 3.0
+autostart = true
+
 [connection signal="pressed" from="JoinRoom" to="." method="_on_JoinRoom_pressed"]
 [connection signal="pressed" from="Exit" to="." method="_on_Exit_pressed"]
+[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]

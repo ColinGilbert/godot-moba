@@ -13,7 +13,7 @@ var direction = Vector3.ZERO
 var timer = 0
 var current_tick = 0
 const MIN_TIME_BETWEEN_TICKS = 1 / 60.0
-const GRAVITY = -0.4
+const GRAVITY = -1
 
 func _on_Controls_direction_vector(dir):
 	direction = dir

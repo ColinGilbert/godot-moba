@@ -47,3 +47,19 @@ remote func updated_clients(client_list):
 	var results = scene_handler.get_node_or_null("RoomScene")
 	if results != null:
 		results.update_clients(client_list)
+
+func exit_room():
+	rpc_id(1, "exit_room", r_id)	
+
+func update_rooms():
+	rpc_id(1, "update_rooms")
+	
+remote func updated_rooms(rooms_list):
+	if get_tree().get_rpc_sender_id() != 1:
+		return
+	var res = scene_handler.get_node_or_null("Lobby")
+	if res != null:
+		print("Updating rooms")
+		res.updated_rooms(rooms_list)
+	else:
+		print("Couldn't find node Lobby")
